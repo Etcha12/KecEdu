@@ -34,9 +34,25 @@
         .modal-content::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera*/
         }
+        /* Smooth scroll untuk navigasi */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom background for sky/cloud theme */
+        .bg-sky-gradient {
+            background: linear-gradient(to bottom, #eff6ff, #dbeafe); /* Light blue to a slightly darker light blue */
+        }
+        .bg-blue-cloud {
+            background-color: #f0f8ff; /* Very light blue */
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23bfdbfe' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E"); /* Subtle diagonal lines - can be replaced with cloud SVG if available easily */
+        }
+        .bg-sky-blue-50 {
+             background-color: #f8fafc; /* Tailwind's sky-50 is a bit too bright, using a slightly more off-white */
+        }
     </style>
 </head>
-<body class="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 min-h-screen font-sans">
+<body class="bg-sky-gradient min-h-screen font-sans">
 
     <header class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -47,7 +63,9 @@
             <nav class="flex items-center space-x-6">
                 <a href="#homePage" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Home</a>
                 <a href="#tentang" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Tentang</a>
+                <a href="#fasilitasKami" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Fasilitas</a>
                 <a href="#layanan" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Layanan</a>
+                <a href="#programKami" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Program</a>
                 <a href="#footer" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Kontak</a>
                 
                 <div id="authArea" class="flex items-center space-x-2">
@@ -63,26 +81,24 @@
         </div>
     </header>
 
-    <section id="homePage" class="relative text-center px-6 py-32 bg-blue-900 bg-opacity-5">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-5xl font-bold gradient-text mb-6">Selamat Datang di KecEdu</h1>
-            <p class="text-xl text-blue-800 mb-8">Pusat Sumber Belajar Kecamatan yang inklusif, interaktif, dan mendukung pembelajaran sepanjang hayat untuk semua kalangan masyarakat.</p>
-            <button onclick="goToAbout()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold shadow-lg transition duration-300 hover:scale-105">
+    <section id="homePage" class="relative text-center px-6 py-32 bg-blue-700 bg-opacity-90 overflow-hidden">
+        <div class="max-w-4xl mx-auto z-10 relative">
+            <h1 class="text-5xl font-bold text-white mb-6 drop-shadow-lg">Selamat Datang di KecEdu</h1>
+            <p class="text-xl text-blue-100 mb-8 drop-shadow-md">Pusat Sumber Belajar Kecamatan yang inklusif, interaktif, dan mendukung pembelajaran sepanjang hayat untuk semua kalangan masyarakat.</p>
+            <a href="#tentang" class="bg-white text-blue-700 px-8 py-3 rounded-lg text-lg font-semibold shadow-lg hover:bg-blue-100 transition duration-300 hover:scale-105">
                 Pelajari Lebih Lanjut <i class="fas fa-arrow-right ml-2"></i>
-            </button>
+            </a>
         </div>
         
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-            <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="200" cy="100" r="50" fill="#3B82F6" fill-opacity="0.1"/>
-                <circle cx="1200" cy="150" r="80" fill="#1E40AF" fill-opacity="0.1"/>
-                <circle cx="800" cy="500" r="60" fill="#3B82F6" fill-opacity="0.1"/>
-                <circle cx="400" cy="600" r="40" fill="#1E40AF" fill-opacity="0.1"/>
+        <div class="absolute top-0 left-0 w-full h-full -z-0 opacity-40">
+            <svg class="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 100C100 20 250 -30 400 50C550 130 700 80 850 150C1000 220 1150 170 1300 100L1440 50V200H0V100Z" fill="white"/>
+                <path d="M0 120C80 40 200 -10 350 70C500 150 650 100 800 170C950 240 1100 190 1250 120L1440 70V200H0V120Z" fill="white" fill-opacity="0.6"/>
             </svg>
         </div>
     </section>
 
-    <section id="tentang" class="px-8 py-20 bg-white">
+    <section id="tentang" class="px-8 py-20 bg-sky-blue-50">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold gradient-text inline-block mb-4">Tentang KecEdu</h2>
@@ -90,7 +106,7 @@
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 mb-20">
-                <div class="vision-card bg-blue-50 p-8 rounded-xl border border-blue-100">
+                <div class="vision-card bg-blue-50 p-8 rounded-xl border border-blue-100 shadow-sm">
                     <div class="text-blue-600 text-4xl mb-4">
                         <i class="fas fa-eye"></i>
                     </div>
@@ -98,7 +114,7 @@
                     <p class="text-gray-700 italic">"Menjadi pusat sumber belajar tingkat kecamatan yang inklusif, adaptif, dan berkelanjutan dalam mendukung masyarakat belajar sepanjang hayat."</p>
                 </div>
                 
-                <div class="vision-card bg-blue-50 p-8 rounded-xl border border-blue-100">
+                <div class="vision-card bg-blue-50 p-8 rounded-xl border border-blue-100 shadow-sm">
                     <div class="text-blue-600 text-4xl mb-4">
                         <i class="fas fa-bullseye"></i>
                     </div>
@@ -123,7 +139,7 @@
                     </ul>
                 </div>
                 
-                <div class="vision-card bg-blue-50 p-8 rounded-xl border border-blue-100">
+                <div class="vision-card bg-blue-50 p-8 rounded-xl border border-blue-100 shadow-sm">
                     <div class="text-blue-600 text-4xl mb-4">
                         <i class="fas fa-heart"></i>
                     </div>
@@ -142,7 +158,121 @@
 
     ---
 
-    <section id="layanan" class="px-8 py-20 bg-blue-50">
+    <section id="fasilitasKami" class="px-8 py-20 bg-blue-cloud">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl font-bold gradient-text inline-block mb-12">Fasilitas Unggulan Kami</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-16">KecEdu menyediakan berbagai fasilitas modern dan nyaman untuk mendukung proses belajar dan berkarya Anda. Jelajahi fasilitas kami:</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-comments"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Ruang Konsultasi</h3>
+                    <p class="text-gray-700 text-sm">Terletak di lantai 1, terdiri atas dua ruang privat untuk layanan konsultasi akademik, pemilihan sekolah/jurusan, hingga bimbingan tumbuh kembang anak. Ruangan ini kedap suara, dilengkapi meja ergonomis, kursi nyaman, papan tulis kecil, tablet, dan komputer. Jam layanan 10.00–16.00 WIB setiap hari, dengan sistem reservasi daring atau langsung.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-book"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Ruang Belajar</h3>
+                    <p class="text-gray-700 text-sm">Berlokasi di lantai 1 dan buka setiap hari sesuai jam operasional KecEdu, menyediakan ruang belajar fleksibel dengan tiga zona: Meja Belajar Umum bersekat, Ruang Belajar Kelompok (Meeting Room), dan Bilik Belajar Pribadi. Fasilitas pendukung meliputi WiFi stabil, stopkontak, dispenser, pencahayaan alami, papan tulis portabel, alat tulis, dan akses loker penyimpanan barang.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-film"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Ruang Produksi Video</h3>
+                    <p class="text-gray-700 text-sm">Fasilitas studio mini yang didesain untuk produksi media pembelajaran (video, audio, infografis). Dilengkapi dengan peralatan seperti kamera, mikrofon, lighting, green screen, dan perangkat lunak editing.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-microphone"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Ruang Produksi Podcast</h3>
+                    <p class="text-gray-700 text-sm">Ruang kedap suara yang mendukung produksi konten audio berupa podcast edukatif. Dilengkapi dengan mikrofon berkualitas tinggi, headphone, mixer audio, dan perangkat lunak rekaman.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-bullhorn"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Auditorium</h3>
+                    <p class="text-gray-700 text-sm">Auditorium serbaguna dengan kapasitas besar, cocok untuk seminar, workshop, pertunjukan seni, dan acara komunitas. Dilengkapi sound system, proyektor, dan tata cahaya modern.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-palette"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Ruang Pameran</h3>
+                    <p class="text-gray-700 text-sm">Area yang didedikasikan untuk menampilkan karya seni, produk kreatif, atau hasil proyek pembelajaran dari pengunjung atau komunitas. Dilengkapi dengan panel display, pencahayaan khusus, dan sistem gantung.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-child-reaching"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Kids Corner</h3>
+                    <p class="text-gray-700 text-sm">Kids Corner adalah area khusus untuk anak-anak usia 2-7 tahun. Dilengkapi dengan buku cerita anak, mainan edukatif, balok susun, puzzle, area mewarnai, serta karpet bermain yang nyaman. Ditemani oleh pendamping terlatih untuk kegiatan belajar sambil bermain.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-tree"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">EduScape Outdoor</h3>
+                    <p class="text-gray-700 text-sm">EduScape Outdoor adalah area belajar di luar ruangan yang didesain dengan konsep taman edukasi. Dilengkapi dengan bangku-bangku, meja piknik, papan informasi interaktif, area tanam kecil, dan jalur setapak yang dikelilingi pepohonan. Cocok untuk kegiatan diskusi kelompok, membaca, atau eksplorasi alam.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section id="programKami" class="px-8 py-20 bg-sky-blue-50">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl font-bold gradient-text inline-block mb-12">Program Unggulan KecEdu</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-16">KecEdu menghadirkan beragam program inovatif untuk mendukung pembelajaran sepanjang hayat dan pengembangan potensi masyarakat. Jelajahi program-program kami:</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">KecEdu Skill Up!</h3>
+                    <p class="text-gray-700 text-sm">Program pelatihan untuk meningkatkan keterampilan masyarakat kecamatan dalam menghadapi tuntutan zaman digital, informatif, dan kolaboratif. Mencakup topik Kewirausahaan, Literasi Digital, Penggunaan Software, dan Desain Pembelajaran.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-video"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">KecEdu Kreasi (Produksi Media)</h3>
+                    <p class="text-gray-700 text-sm">Kesempatan bagi pelajar, guru, dan masyarakat umum untuk belajar membuat media pembelajaran kreatif seperti video edukatif, podcast, infografis, dan presentasi. Didukung fasilitas studio mini dan ruang podcast.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-paint-brush"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">KecEdu Kreasi (Seni & Bakat)</h3>
+                    <p class="text-gray-700 text-sm">Program yang menyediakan ruang bagi siapa saja untuk menunjukkan kreativitas dan bakat mereka melalui berbagai kegiatan seni seperti pameran seni lukis dan kerajinan, pertunjukan musik, tari, dan drama.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-book-reader"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">LITERACTION</h3>
+                    <p class="text-gray-700 text-sm">Gerakan literasi aktif untuk menumbuhkan minat baca dan tulis dengan cara seru dan menyenangkan. Kegiatan meliputi sesi mendongeng, game literasi interaktif, menulis kreatif, dan ruang berbagi rekomendasi buku.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-hands-helping"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">EduCare</h3>
+                    <p class="text-gray-700 text-sm">Layanan konsultasi terpadu untuk peserta didik, mahasiswa, guru, dan masyarakat umum. Diberikan oleh psikolog pendidikan dan teknolog pembelajaran, mencakup bimbingan belajar hingga pemanfaatan media.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-cogs"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Smart Service System</h3>
+                    <p class="text-gray-700 text-sm">Sistem digitalisasi layanan untuk meningkatkan efisiensi, kenyamanan, dan inklusivitas pengunjung. Mencakup reservasi ruang/peralatan daring, peminjaman buku digital, dan pendaftaran anggota.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-child"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">KecEdu Ceria</h3>
+                    <p class="text-gray-700 text-sm">Program belajar khusus anak-anak usia 2-7 tahun di Kids Corner. Anak-anak diajak belajar sambil bermain melalui membaca buku cerita, mewarnai, bermain balok, hingga menyusun puzzle edukatif, ditemani pendamping terlatih.</p>
+                 </div>
+                 <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-database"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Pustaka Akses</h3>
+                    <p class="text-gray-700 text-sm">Program layanan perpustakaan dan media untuk memudahkan akses bahan bacaan dan alat peraga pendidikan. Pengunjung dapat meminjam buku dan alat peraga edukatif dengan layanan peminjaman langsung atau reservasi daring.</p>
+                </div>
+                 <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-camera"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">KecEdu Production</h3>
+                    <p class="text-gray-700 text-sm">Program produksi sumber belajar mandiri (video edukatif, audio pembelajaran, infografis, modul tematik). Memanfaatkan studio mini, ruang editing, dan perangkat multimedia. Hasil disebarluaskan via website dan media sosial KecEdu.</p>
+                </div>
+                 <div class="bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100 text-left">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-headset"></i></div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Layanan Terpadu KecEdu</h3>
+                    <p class="text-gray-700 text-sm">Program layanan satu pintu melalui help desk di lantai 1 untuk segala kebutuhan pengunjung (informasi, pendaftaran anggota, reservasi ruang, bantuan teknis). Didukung Smart Service System.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section id="layanan" class="px-8 py-20 bg-sky-blue-50">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="text-4xl font-bold gradient-text inline-block mb-12">Layanan Kami</h2>
             <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-16">KecEdu menyediakan berbagai layanan untuk mendukung kebutuhan belajar dan pengembangan diri Anda. Jelajahi pilihan di bawah ini:</p>
@@ -153,7 +283,7 @@
                         <i class="fas fa-chalkboard-teacher"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-blue-800 mb-4">Pinjam Ruangan</h3>
-                    <p class="text-gray-700 mb-6">Butuh tempat untuk belajar kelompok, rapat komunitas, atau workshop? Pinjam ruang belajar atau konsultasi kami yang nyaman dan fasilitas lengkap.</p>
+                    <p class="text-gray-700 mb-6">Pesan ruang produksi video, podcast, atau auditorium untuk berbagai kebutuhan acara dan kreasi Anda.</p>
                     <button onclick="handleServiceClick('pinjamRuangan')" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition duration-300">
                         Ajukan Peminjaman <i class="fas fa-arrow-right ml-2"></i>
                     </button>
@@ -183,8 +313,6 @@
             </div>
         </div>
     </section>
-
-    ---
 
     <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
         <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md relative modal-content">
@@ -268,8 +396,13 @@
     </div>
 
 
-    <footer id="footer" class="bg-blue-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer id="footer" class="bg-blue-900 text-white py-12 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full -z-0 opacity-10">
+             <svg class="absolute top-0 left-0 w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 50C100 80 250 110 400 60C550 10 700 60 850 30C1000 0 1150 40 1300 70L1440 100V0H0V50Z" fill="white"/>
+            </svg>
+        </div>
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
             <div>
                 <h3 class="text-xl font-bold mb-4">KecEdu</h3>
                 <p class="text-blue-200 text-sm">Pusat Sumber Belajar Kecamatan untuk pembelajaran sepanjang hayat.</p>
@@ -279,7 +412,9 @@
                 <ul class="space-y-2">
                     <li><a href="#homePage" class="text-blue-200 hover:text-white transition">Home</a></li>
                     <li><a href="#tentang" class="text-blue-200 hover:text-white transition">Tentang Kami</a></li>
+                    <li><a href="#fasilitasKami" class="text-blue-200 hover:text-white transition">Fasilitas</a></li>
                     <li><a href="#layanan" class="text-blue-200 hover:text-white transition">Layanan</a></li>
+                    <li><a href="#programKami" class="text-blue-200 hover:text-white transition">Program</a></li>
                     <li><a href="#footer" class="text-blue-200 hover:text-white transition">Kontak</a></li>
                 </ul>
             </div>
@@ -327,30 +462,38 @@
             { memberId: "admin", username: "Admin KecEdu", password: "admin123" } 
         ];
 
+        // Dummy data for books with availability (Max 20 books)
         const dummyBooks = [
-            "Don Quixote by Miguel de Cervantes",
-            "Thinking Fast and Slow by Daniel Kahneman",
-            "To Kill a Mockingbird by Harper Lee",
-            "Atomic Habits by James Clear",
-            "Harry Potter and the Sorcerer's Stone by J.K. Rowling",
-            "Negeri 5 Menara by Ahmad Fuadi",
-            "Laskar Pelangi by Andrea Hirata",
-            "Laut Bercerita by Leila S. Chudori",
-            "Max Havelaar by Multatuli",
-            "The Secret History of the World by Jonathan Black"
+            { id: 'b1', title: "Don Quixote", author: "Miguel de Cervantes", status: "Tersedia", stock: 2 },
+            { id: 'b2', title: "Thinking Fast and Slow", author: "Daniel Kahneman", status: "Tersedia", stock: 3 },
+            { id: 'b3', title: "To Kill a Mockingbird", author: "Harper Lee", status: "Dipinjam", stock: 0 },
+            { id: 'b4', title: "Atomic Habits", author: "James Clear", status: "Tersedia", stock: 1 },
+            { id: 'b5', title: "Harry Potter and the Sorcerer's Stone", author: "J.K. Rowling", status: "Tersedia", stock: 2 },
+            { id: 'b6', title: "Negeri 5 Menara", author: "Ahmad Fuadi", status: "Tersedia", stock: 1 },
+            { id: 'b7', title: "Laskar Pelangi", author: "Andrea Hirata", status: "Dipinjam", stock: 0 },
+            { id: 'b8', title: "Laut Bercerita", author: "Leila S. Chudori", status: "Tersedia", stock: 3 },
+            { id: 'b9', title: "Max Havelaar", author: "Multatuli", status: "Tersedia", stock: 1 },
+            { id: 'b10', title: "The Secret History of the World", author: "Jonathan Black", status: "Tersedia", stock: 2 },
+            { id: 'b11', title: "Sapiens: A Brief History of Humankind", author: "Yuval Noah Harari", status: "Tersedia", stock: 2 },
+            { id: 'b12', title: "Filosofi Teras", author: "Henry Manampiring", status: "Dipinjam", stock: 0 },
+            { id: 'b13', title: "Bumi Manusia", author: "Pramoedya Ananta Toer", status: "Tersedia", stock: 1 },
+            { id: 'b14', title: "Cantik Itu Luka", author: "Eka Kurniawan", status: "Tersedia", stock: 1 },
+            { id: 'b15', title: "Rich Dad Poor Dad", author: "Robert T. Kiyosaki", status: "Tersedia", stock: 2 },
         ];
 
+        // Dummy data for rooms AVAILABLE FOR BORROWING (NO descriptions here as per user request)
         const dummyRooms = [
-            { name: "Ruang Produksi Podcast", price: "Gratis" },
-            { name: "Ruang Produksi Video", price: "Gratis" },
-            { name: "Auditorium", price: "Rp 500.000" }
+            { id: 'r1', name: "Ruang Produksi Video", price: "Gratis", availability: "Tersedia", isPaid: false },
+            { id: 'r2', name: "Ruang Produksi Podcast", price: "Gratis", availability: "Tersedia", isPaid: false },
+            { id: 'r3', name: "Auditorium", price: "Rp 500.000 / Jam", availability: "Tersedia (Perlu Reservasi)", isPaid: true, basePricePerHour: 500000 }
         ];
 
+        // Dummy data for trainings with quota information (Max 20 total quota)
         const dummyTrainings = [
-            { name: "Pelatihan Kewirausahaan", target: "masyarakat umum", schedule: "setiap hari Sabtu, 08:00 WIB" },
-            { name: "Pelatihan Literasi Digital & Informasi", target: "siswa dan mahasiswa", schedule: "setiap Selasa, 16:00 WIB" },
-            { name: "Pelatihan Penggunaan Software", target: "siswa dan mahasiswa", schedule: "setiap Rabu, 16:00 WIB" },
-            { name: "Pelatihan Desain Pembelajaran", target: "guru dan dosen", schedule: "setiap Minggu, 08:00 WIB" }
+            { id: 't1', name: "Pelatihan Kewirausahaan", target: "masyarakat umum", schedule: "setiap hari Sabtu, 08:00 WIB", totalQuota: 15, filledQuota: 12 },
+            { id: 't2', name: "Pelatihan Literasi Digital & Informasi", target: "siswa dan mahasiswa", schedule: "setiap Selasa, 16:00 WIB", totalQuota: 20, filledQuota: 18 },
+            { id: 't3', name: "Pelatihan Penggunaan Software", target: "siswa dan mahasiswa", schedule: "setiap Rabu, 16:00 WIB", totalQuota: 18, filledQuota: 18 }, // Penuh
+            { id: 't4', name: "Pelatihan Desain Pembelajaran", target: "guru dan dosen", schedule: "setiap Minggu, 08:00 WIB", totalQuota: 10, filledQuota: 5 }
         ];
 
         let loggedInUser = null; // Menyimpan data user yang sedang login
@@ -421,15 +564,15 @@
 
         // --- Fungsi untuk Modal Layanan ---
         // Fungsi baru untuk menangani klik layanan
-        function handleServiceClick(serviceType) {
+        function handleServiceClick(serviceType, id = null) {
             if (!loggedInUser) {
                 openNotLoggedInModal(); // Tampilkan modal notifikasi jika belum login
             } else {
-                openServiceModal(serviceType); // Buka modal layanan jika sudah login
+                openServiceModal(serviceType, id); // Buka modal layanan jika sudah login
             }
         }
 
-        function openServiceModal(serviceType) {
+        function openServiceModal(serviceType, selectedItemId = null) {
             const modalTitle = document.getElementById('serviceModalTitle');
             const modalContent = document.getElementById('serviceModalContent');
             const serviceModalForm = document.getElementById('serviceModalForm');
@@ -447,78 +590,111 @@
                 document.getElementById('formName').value = loggedInUser.username;
                 document.getElementById('formMemberId').value = loggedInUser.memberId;
             } else {
-                // Should not happen if handleServiceClick is used correctly
                 document.getElementById('formName').value = '';
                 document.getElementById('formMemberId').value = '';
             }
 
             if (serviceType === 'pinjamRuangan') {
                 modalTitle.textContent = 'Peminjaman Ruangan';
-                let contentHtml = '<p class="mb-4">Berikut daftar ruangan yang tersedia untuk dipinjam:</p><ul class="list-disc pl-5 space-y-2">';
+                let contentHtml = '<p class="mb-4">Berikut daftar ruangan yang bisa dipinjam:</p><div class="grid grid-cols-1 gap-4">';
+                
                 dummyRooms.forEach(room => {
-                    contentHtml += `<li class="text-lg font-medium">${room.name} <span class="text-blue-600">(${room.price})</span></li>`;
+                    contentHtml += `
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <h3 class="text-xl font-bold text-blue-800 mb-2">${room.name} <span class="text-blue-600 font-normal text-base">(${room.price})</span></h3>
+                            <p class="text-gray-600 text-sm">Status: <span class="font-semibold ${room.availability === 'Tersedia' || room.availability.includes('Tersedia') ? 'text-green-600' : 'text-red-600'}">${room.availability}</span></p>
+                            <p class="text-gray-600 text-sm mt-1">Sistem Ketersediaan: Mohon hubungi kami untuk info ketersediaan slot waktu dan reservasi.</p>
+                        </div>
+                    `;
                 });
-                contentHtml += '</ul><p class="mt-6 text-gray-600 text-sm">Untuk mengajukan peminjaman, silakan isi form di bawah.</p>';
+                contentHtml += '</div><p class="mt-6 text-gray-600 text-sm">Untuk mengajukan peminjaman, silakan isi form di bawah.</p>';
                 modalContent.innerHTML = contentHtml;
 
                 additionalFields.innerHTML = `
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Pilih Ruangan</label>
-                        <select id="selectedRoom" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required>
+                        <select id="selectedRoom" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required onchange="handleRoomSelection(this.value)">
                             <option value="">-- Pilih Ruangan --</option>
-                            ${dummyRooms.map(room => `<option value="${room.name}">${room.name} (${room.price})</option>`).join('')}
+                            ${dummyRooms.map(room => `<option value="${room.id}" ${selectedItemId === room.id ? 'selected' : ''}>${room.name} (${room.price}) - ${room.availability}</option>`).join('')}
                         </select>
                     </div>
-                    <div>
+                    <div id="roomDateTimeWrapper">
                         <label class="block text-sm font-medium text-gray-700">Tanggal & Waktu Peminjaman</label>
                         <input type="datetime-local" id="roomDateTime" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required />
                     </div>
+                    <div id="auditoriumPaymentFields" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700">Durasi Peminjaman (Jam)</label>
+                        <input type="number" id="durationHours" min="1" value="1" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" oninput="calculateAuditoriumCost()" />
+                        <p class="text-sm text-gray-600 mt-2">Estimasi Biaya: <span id="estimatedCost" class="font-semibold text-blue-700">Rp 0</span></p>
+                    </div>
                 `;
+                // Trigger selection handler if an item was pre-selected
+                if (selectedItemId) {
+                    handleRoomSelection(selectedItemId);
+                }
 
             } else if (serviceType === 'pinjamBuku') {
                 modalTitle.textContent = 'Peminjaman Buku';
-                let contentHtml = '<p class="mb-4">Berikut daftar buku yang tersedia di perpustakaan kami:</p><ul class="list-disc pl-5 space-y-2">';
+                let contentHtml = '<p class="mb-4">Berikut koleksi buku yang tersedia di perpustakaan kami. Anda dapat meminjam hingga 3 buku:</p><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">';
+                
                 dummyBooks.forEach(book => {
-                    contentHtml += `<li class="text-lg font-medium">${book}</li>`;
+                    contentHtml += `
+                        <div class="bg-blue-50 p-4 rounded-lg shadow-sm border border-blue-200">
+                            <h3 class="text-lg font-bold text-blue-800">${book.title}</h3>
+                            <p class="text-gray-700 text-sm">Oleh: ${book.author}</p>
+                            <p class="text-sm mt-2">Status: <span class="font-semibold ${book.status === 'Tersedia' ? 'text-green-600' : 'text-red-600'}">${book.status} ${book.status === 'Tersedia' ? `(${book.stock} tersedia)` : ''}</span></p>
+                        </div>
+                    `;
                 });
-                contentHtml += '</ul><p class="mt-6 text-gray-600 text-sm">Untuk mengajukan peminjaman, silakan isi form di bawah.</p>';
+                contentHtml += '</div><p class="mt-6 text-gray-600 text-sm">Pilih buku yang ingin Anda pinjam (maksimal 3 buku) di bawah ini:</p>';
                 modalContent.innerHTML = contentHtml;
 
                 additionalFields.innerHTML = `
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Pilih Buku</label>
-                        <select id="selectedBook" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required>
-                            <option value="">-- Pilih Buku --</option>
-                            ${dummyBooks.map(book => `<option value="${book}">${book}</option>`).join('')}
-                        </select>
+                    <div id="bookSelectionCheckboxes" class="space-y-2">
+                        ${dummyBooks.map(book => `
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" name="selectedBooks" value="${book.id}" class="form-checkbox text-blue-600" ${book.status !== 'Tersedia' ? 'disabled' : ''}>
+                                <span class="ml-2 text-gray-700 ${book.status !== 'Tersedia' ? 'line-through text-gray-500' : ''}">${book.title} - ${book.author} (${book.status})</span>
+                            </label>
+                        `).join('')}
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Tanggal Pengembalian (Maks 7 hari)</label>
+                        <label class="block text-sm font-medium text-gray-700">Tanggal Pengembalian (Maks 7 hari dari sekarang)</label>
                         <input type="date" id="bookReturnDate" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required />
                     </div>
                 `;
 
             } else if (serviceType === 'daftarPelatihan') {
                 modalTitle.textContent = 'Daftar Pelatihan';
-                let contentHtml = '<p class="mb-4">Berikut daftar pelatihan yang bisa Anda ikuti:</p>';
+                let contentHtml = '<p class="mb-4">Berikut daftar pelatihan yang bisa Anda ikuti. Klik pada kotak pelatihan untuk mendaftar:</p><div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+                
                 dummyTrainings.forEach(training => {
+                    const isFull = training.filledQuota >= training.totalQuota;
                     contentHtml += `
-                        <div class="border border-blue-200 p-4 rounded-lg mb-4 bg-blue-50">
-                            <h3 class="text-xl font-bold text-blue-800">${training.name}</h3>
-                            <p class="text-gray-700 mt-1"><i class="fas fa-users mr-2 text-blue-600"></i>Target Peserta: ${training.target}</p>
-                            <p class="text-gray-700"><i class="fas fa-calendar-alt mr-2 text-blue-600"></i>Jadwal: ${training.schedule}</p>
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 cursor-pointer hover:bg-blue-100 transition duration-300 ${isFull ? 'opacity-60 cursor-not-allowed' : ''}" 
+                             onclick="if(!${isFull}){handleServiceClick('daftarPelatihan', '${training.id}')}">
+                            <h3 class="text-xl font-bold text-blue-800 mb-1">${training.name}</h3>
+                            <p class="text-gray-700 text-sm mt-1"><i class="fas fa-users mr-2 text-blue-600"></i>Target Peserta: ${training.target}</p>
+                            <p class="text-700 text-sm"><i class="fas fa-calendar-alt mr-2 text-blue-600"></i>Jadwal: ${training.schedule}</p>
+                            <p class="text-sm mt-2">Kuota: <span class="font-semibold ${isFull ? 'text-red-600' : 'text-green-600'}">${training.filledQuota}/${training.totalQuota}</span> ${isFull ? '(PENUH)' : ''}</p>
                         </div>
                     `;
                 });
-                contentHtml += '<p class="mt-6 text-gray-600 text-sm">Untuk mendaftar, silakan isi form di bawah.</p>';
+                contentHtml += '</div><p class="mt-6 text-gray-600 text-sm">Untuk mendaftar, silakan isi form di bawah.</p>';
                 modalContent.innerHTML = contentHtml;
 
+                // Pre-select training in form if an ID was passed
+                const selectedTraining = dummyTrainings.find(t => t.id === selectedItemId);
                 additionalFields.innerHTML = `
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Pilih Pelatihan</label>
                         <select id="selectedTraining" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required>
                             <option value="">-- Pilih Pelatihan --</option>
-                            ${dummyTrainings.map(training => `<option value="${training.name}">${training.name} (${training.schedule})</option>`).join('')}
+                            ${dummyTrainings.map(training => `
+                                <option value="${training.id}" ${selectedTraining && selectedTraining.id === training.id ? 'selected' : ''} ${training.filledQuota >= training.totalQuota ? 'disabled' : ''}>
+                                    ${training.name} (${training.schedule}) - Kuota: ${training.filledQuota}/${training.totalQuota} ${training.filledQuota >= training.totalQuota ? '(PENUH)' : ''}
+                                </option>
+                            `).join('')}
                         </select>
                     </div>
                 `;
@@ -529,12 +705,45 @@
             document.getElementById('serviceSubmissionForm').dataset.serviceType = serviceType;
         }
 
+        // Handle room selection for auditorium payment simulation
+        function handleRoomSelection(roomId) {
+            const selectedRoom = dummyRooms.find(room => room.id === roomId);
+            const auditoriumPaymentFields = document.getElementById('auditoriumPaymentFields');
+            const roomDateTimeWrapper = document.getElementById('roomDateTimeWrapper');
+
+            if (selectedRoom && selectedRoom.isPaid) {
+                auditoriumPaymentFields.classList.remove('hidden');
+                document.getElementById('durationHours').value = 1; // Reset duration
+                calculateAuditoriumCost();
+                // For paid rooms, make sure datetime is visible
+                roomDateTimeWrapper.classList.remove('hidden');
+            } else {
+                auditoriumPaymentFields.classList.add('hidden');
+                // For free rooms, make sure datetime is visible
+                roomDateTimeWrapper.classList.remove('hidden');
+            }
+        }
+
+        // Calculate auditorium cost
+        function calculateAuditoriumCost() {
+            const selectedRoomId = document.getElementById('selectedRoom').value;
+            const selectedRoom = dummyRooms.find(room => room.id === selectedRoomId);
+            const durationHours = parseInt(document.getElementById('durationHours').value) || 0;
+            let estimatedCost = 0;
+
+            if (selectedRoom && selectedRoom.isPaid) {
+                estimatedCost = selectedRoom.basePricePerHour * durationHours;
+            }
+            document.getElementById('estimatedCost').textContent = `Rp ${estimatedCost.toLocaleString('id-ID')}`;
+        }
+
         function closeServiceModal() {
             document.getElementById("serviceModal").classList.add("hidden");
             document.body.style.overflow = "auto";
             document.getElementById('serviceSubmissionForm').reset(); // Reset form layanan
             document.getElementById('confirmationMessage').classList.add('hidden'); // Sembunyikan pesan konfirmasi
             document.getElementById('serviceModalForm').classList.remove('hidden'); // Pastikan form terlihat jika dibuka lagi
+            document.getElementById('auditoriumPaymentFields').classList.add('hidden'); // Hide payment fields
         }
 
         // Tutup modal layanan saat klik di luar area modal
@@ -553,16 +762,57 @@
             let confirmationDetail = '';
 
             if (serviceType === 'pinjamRuangan') {
-                const selectedRoom = document.getElementById('selectedRoom').value;
+                const selectedRoomId = document.getElementById('selectedRoom').value;
+                const selectedRoom = dummyRooms.find(room => room.id === selectedRoomId);
                 const roomDateTime = document.getElementById('roomDateTime').value;
-                confirmationDetail = `Permohonan peminjaman **${selectedRoom}** oleh **${name} (No. Anggota: ${memberId})** pada tanggal **${new Date(roomDateTime).toLocaleString('id-ID')}** berhasil diajukan.`;
+                let costInfo = '';
+
+                if (selectedRoom && selectedRoom.isPaid) {
+                    const durationHours = parseInt(document.getElementById('durationHours').value) || 0;
+                    const estimatedCost = selectedRoom.basePricePerHour * durationHours;
+                    costInfo = ` dengan estimasi biaya Rp ${estimatedCost.toLocaleString('id-ID')}`;
+                }
+                confirmationDetail = `Permohonan peminjaman **${selectedRoom ? selectedRoom.name : 'Ruangan Tidak Dikenal'}** oleh **${name} (No. Anggota: ${memberId})** pada tanggal **${new Date(roomDateTime).toLocaleString('id-ID')}**${costInfo} berhasil diajukan.`;
             } else if (serviceType === 'pinjamBuku') {
-                const selectedBook = document.getElementById('selectedBook').value;
+                const selectedBookCheckboxes = Array.from(document.querySelectorAll('input[name="selectedBooks"]:checked'));
+                if (selectedBookCheckboxes.length === 0) {
+                    alert('Mohon pilih setidaknya satu buku.');
+                    return;
+                }
+                if (selectedBookCheckboxes.length > 3) {
+                    alert('Anda hanya bisa meminjam maksimal 3 buku.');
+                    return;
+                }
+                const selectedBookIds = selectedBookCheckboxes.map(cb => cb.value);
+                const selectedBooksTitles = selectedBookIds.map(id => dummyBooks.find(book => book.id === id).title).join(', ');
                 const bookReturnDate = document.getElementById('bookReturnDate').value;
-                confirmationDetail = `Permohonan peminjaman buku **"${selectedBook}"** oleh **${name} (No. Anggota: ${memberId})** berhasil diajukan. Mohon kembalikan sebelum tanggal **${new Date(bookReturnDate).toLocaleDateString('id-ID')}**.`;
+
+                // Simulate stock reduction
+                selectedBookIds.forEach(id => {
+                    const book = dummyBooks.find(b => b.id === id);
+                    if (book && book.stock > 0) {
+                        book.stock--;
+                        if (book.stock === 0) {
+                            book.status = 'Dipinjam';
+                        }
+                    }
+                });
+
+
+                confirmationDetail = `Permohonan peminjaman buku **"${selectedBooksTitles}"** oleh **${name} (No. Anggota: ${memberId})** berhasil diajukan. Mohon kembalikan sebelum tanggal **${new Date(bookReturnDate).toLocaleDateString('id-ID')}**.`;
             } else if (serviceType === 'daftarPelatihan') {
-                const selectedTraining = document.getElementById('selectedTraining').value;
-                confirmationDetail = `Pendaftaran pelatihan **${selectedTraining}** oleh **${name} (No. Anggota: ${memberId})** berhasil. Detail lebih lanjut akan dikirim ke email Anda.`;
+                const selectedTrainingId = document.getElementById('selectedTraining').value;
+                const selectedTraining = dummyTrainings.find(t => t.id === selectedTrainingId);
+                
+                // Simulate quota fill
+                if (selectedTraining && selectedTraining.filledQuota < selectedTraining.totalQuota) {
+                    selectedTraining.filledQuota++;
+                } else if (selectedTraining && selectedTraining.filledQuota >= selectedTraining.totalQuota) {
+                    alert('Maaf, kuota pelatihan ini sudah penuh.');
+                    return;
+                }
+
+                confirmationDetail = `Pendaftaran pelatihan **${selectedTraining ? selectedTraining.name : 'Pelatihan Tidak Dikenal'}** oleh **${name} (No. Anggota: ${memberId})** berhasil. Detail lebih lanjut akan dikirim ke email Anda.`;
             }
 
             // Sembunyikan form dan tampilkan pesan konfirmasi
@@ -585,13 +835,6 @@
         function goToLoginFromNotification() {
             closeNotLoggedInModal();
             openLoginModal();
-        }
-
-        // Fungsi untuk scroll ke bagian tentang
-        function goToAbout() {
-            document.getElementById('tentang').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
         }
 
         // Inisialisasi UI saat halaman pertama kali dimuat
