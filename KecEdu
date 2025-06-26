@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KecEdu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Animasi untuk bagian visi-misi */
+        .vision-card {
+            transition: all 0.3s ease;
+        }
+        .vision-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Efek gradient untuk teks */
+        .gradient-text {
+            background: linear-gradient(45deg, #1e40af, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Styling untuk modal-content */
+        .modal-content {
+            max-height: 80vh; /* Batasi tinggi modal */
+            overflow-y: auto; /* Aktifkan scroll jika konten melebihi tinggi */
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        .modal-content::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera*/
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-blue-50 via-blue-100 to-blue-200 min-h-screen font-sans">
+
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <h1 class="text-2xl font-bold text-blue-700">KecEdu</h1>
+            </div>
+            
+            <nav class="flex items-center space-x-6">
+                <a href="#homePage" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Home</a>
+                <a href="#tentang" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Tentang</a>
+                <a href="#layanan" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Layanan</a>
+                <a href="#footer" class="text-sm font-medium text-blue-700 hover:text-blue-500 transition duration-300 hover:underline">Kontak</a>
+                
+                <div id="authArea" class="flex items-center space-x-2">
+                    <button id="loginButton" onclick="openLoginModal()" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-2 rounded-md text-sm font-semibold shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Masuk
+                    </button>
+                    <button id="welcomeButton" class="hidden bg-blue-100 text-blue-700 px-4 py-2 rounded-md text-sm font-semibold cursor-default">
+                        <i class="fas fa-user-circle mr-2"></i><span id="welcomeMessage"></span>
+                    </button>
+                    <button id="logoutButton" onclick="logout()" class="hidden bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-xs font-semibold shadow-md">Keluar</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="homePage" class="relative text-center px-6 py-32 bg-blue-900 bg-opacity-5">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl font-bold gradient-text mb-6">Selamat Datang di KecEdu</h1>
+            <p class="text-xl text-blue-800 mb-8">Pusat Sumber Belajar Kecamatan yang inklusif, interaktif, dan mendukung pembelajaran sepanjang hayat untuk semua kalangan masyarakat.</p>
+            <button onclick="goToAbout()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold shadow-lg transition duration-300 hover:scale-105">
+                Pelajari Lebih Lanjut <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+        
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <svg class="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="200" cy="100" r="50" fill="#3B82F6" fill-opacity="0.1"/>
+                <circle cx="1200" cy="150" r="80" fill="#1E40AF" fill-opacity="0.1"/>
+                <circle cx="800" cy="500" r="60" fill="#3B82F6" fill-opacity="0.1"/>
+                <circle cx="400" cy="600" r="40" fill="#1E40AF" fill-opacity="0.1"/>
+            </svg>
+        </div>
+    </section>
+
+    <section id="tentang" class="px-8 py-20 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text inline-block mb-4">Tentang KecEdu</h2>
+                <p class="text-lg text-gray-700 max-w-4xl mx-auto">KecEdu merupakan model Pusat Sumber Belajar (PSB) tingkat kecamatan yang dirancang sebagai wadah pembelajaran sepanjang hayat untuk semua warga. Dengan pendekatan yang inklusif, KecEdu menyediakan berbagai layanan dan fasilitas untuk mendukung masyarakat belajar.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                <div class="vision-card bg-blue-50 p-8 rounded-xl border border-blue-100">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">Visi Kami</h3>
+                    <p class="text-gray-700 italic">"Menjadi pusat sumber belajar tingkat kecamatan yang inklusif, adaptif, dan berkelanjutan dalam mendukung masyarakat belajar sepanjang hayat."</p>
+                </div>
+                
+                <div class="vision-card bg-blue-50 p-8 rounded-xl border border-blue-100">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">Misi Kami</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Menyediakan sumber belajar yang relevan untuk semua kalangan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Mendorong literasi digital dan keterampilan abad 21</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Membangun kolaborasi untuk kualitas layanan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Memberdayakan masyarakat melalui pelatihan</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="vision-card bg-blue-50 p-8 rounded-xl border border-blue-100">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">Nilai Kami</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Inklusif</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Kreatif</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Kolaboratif</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Berintegritas</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Berpihak pada Warga</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section id="layanan" class="px-8 py-20 bg-blue-50">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl font-bold gradient-text inline-block mb-12">Layanan Kami</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-16">KecEdu menyediakan berbagai layanan untuk mendukung kebutuhan belajar dan pengembangan diri Anda. Jelajahi pilihan di bawah ini:</p>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-blue-100 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-blue-600 text-5xl mb-6">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Pinjam Ruangan</h3>
+                    <p class="text-gray-700 mb-6">Butuh tempat untuk belajar kelompok, rapat komunitas, atau workshop? Pinjam ruang belajar atau konsultasi kami yang nyaman dan fasilitas lengkap.</p>
+                    <button onclick="handleServiceClick('pinjamRuangan')" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition duration-300">
+                        Ajukan Peminjaman <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-blue-100 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-blue-600 text-5xl mb-6">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Pinjam Buku</h3>
+                    <p class="text-gray-700 mb-6">Akses koleksi buku, jurnal, dan sumber daya digital kami. Tingkatkan pengetahuan Anda dengan beragam topik yang tersedia.</p>
+                    <button onclick="handleServiceClick('pinjamBuku')" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition duration-300">
+                        Lihat Koleksi <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-blue-100 transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-blue-600 text-5xl mb-6">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">Daftar Pelatihan</h3>
+                    <p class="text-gray-700 mb-6">Ikuti berbagai pelatihan keterampilan digital dan hidup yang relevan untuk meningkatkan kompetensi dan peluang Anda.</p>
+                    <button onclick="handleServiceClick('daftarPelatihan')" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold transition duration-300">
+                        Jadwal Pelatihan <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md relative modal-content">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h1 class="text-3xl font-bold text-center gradient-text mb-8">Masuk ke KecEdu</h1>
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nomor Anggota / Username</label>
+                    <div class="relative">
+                        <i class="fas fa-id-card absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="memberIdOrUsername" class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Nomor Anggota atau Username" required />
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <div class="relative">
+                        <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" id="password" class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="••••••••" required />
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-semibold py-3 rounded-lg shadow-md transition duration-300">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Masuk Sekarang
+                </button>
+                <div class="text-center mt-4">
+                    <a href="#" class="text-sm text-blue-600 hover:underline">Lupa password?</a>
+                </div>
+                <p id="errorMessage" class="text-red-500 text-sm text-center hidden mt-2">
+                    <i class="fas fa-exclamation-circle mr-1"></i> Nomor anggota, username, atau password salah.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div id="serviceModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-2xl relative modal-content">
+            <button onclick="closeServiceModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h2 id="serviceModalTitle" class="text-3xl font-bold text-center gradient-text mb-8"></h2>
+            <div id="serviceModalContent" class="text-gray-700">
+                </div>
+            <div id="serviceModalForm" class="mt-8 hidden">
+                <h3 class="text-xl font-bold text-blue-700 mb-4">Form Pengajuan</h3>
+                <form id="serviceSubmissionForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                        <input type="text" id="formName" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Nomor Anggota</label>
+                        <input type="text" id="formMemberId" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required />
+                    </div>
+                    <div id="additionalServiceFormFields">
+                        </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg">Kirim Permohonan</button>
+                </form>
+            </div>
+            <div id="confirmationMessage" class="hidden mt-8 p-4 bg-green-100 border border-green-300 text-green-800 rounded-lg text-center">
+                <i class="fas fa-check-circle text-2xl mb-2"></i>
+                <p class="font-semibold text-lg">Permohonan Anda berhasil diajukan!</p>
+                <p id="confirmationDetail" class="mt-2 text-sm"></p>
+                <button onclick="closeServiceModal()" class="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notLoggedInModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm relative text-center">
+            <button onclick="closeNotLoggedInModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <i class="fas fa-info-circle text-5xl text-blue-500 mb-6"></i>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Akses Dibatasi</h2>
+            <p class="text-gray-600 mb-6">Anda perlu **login** terlebih dahulu untuk mengakses fitur ini.</p>
+            <button onclick="goToLoginFromNotification()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-semibold">
+                Login Sekarang
+            </button>
+        </div>
+    </div>
+
+
+    <footer id="footer" class="bg-blue-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">KecEdu</h3>
+                <p class="text-blue-200 text-sm">Pusat Sumber Belajar Kecamatan untuk pembelajaran sepanjang hayat.</p>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Tautan Cepat</h4>
+                <ul class="space-y-2">
+                    <li><a href="#homePage" class="text-blue-200 hover:text-white transition">Home</a></li>
+                    <li><a href="#tentang" class="text-blue-200 hover:text-white transition">Tentang Kami</a></li>
+                    <li><a href="#layanan" class="text-blue-200 hover:text-white transition">Layanan</a></li>
+                    <li><a href="#footer" class="text-blue-200 hover:text-white transition">Kontak</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Kontak Kami</h4>
+                <ul class="space-y-3 text-blue-200">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                        <span>Jl. Pendidikan No. 123, Kecamatan Ceria, Kota Edukasi</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone-alt mr-3"></i>
+                        <span>0812-3456-7890</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-3"></i>
+                        <span>info@kecedu.id</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Ikuti Kami</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-blue-200 hover:text-white text-xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-blue-200 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-blue-200 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-blue-200 hover:text-white text-xl"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-blue-800 mt-8 pt-6 text-center text-blue-300 text-sm">
+            <p>© 2025 KecEdu. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Data Dummy ---
+        const dummyAccounts = [
+            { memberId: "030410", username: "Qisthi Larasati", password: "Kelinci" },
+            { memberId: "030411", username: "Wafa Fatmah", password: "Cupcake" },
+            { memberId: "030412", username: "Aulia Hapsari", password: "Lolipop" },
+            { memberId: "030500", username: "Aulia Putri", password: "Daun" },
+            { memberId: "030350", username: "Farah Qonita", password: "Hujan" },
+            // Akun admin untuk simulasi
+            { memberId: "admin", username: "Admin KecEdu", password: "admin123" } 
+        ];
+
+        const dummyBooks = [
+            "Don Quixote by Miguel de Cervantes",
+            "Thinking Fast and Slow by Daniel Kahneman",
+            "To Kill a Mockingbird by Harper Lee",
+            "Atomic Habits by James Clear",
+            "Harry Potter and the Sorcerer's Stone by J.K. Rowling",
+            "Negeri 5 Menara by Ahmad Fuadi",
+            "Laskar Pelangi by Andrea Hirata",
+            "Laut Bercerita by Leila S. Chudori",
+            "Max Havelaar by Multatuli",
+            "The Secret History of the World by Jonathan Black"
+        ];
+
+        const dummyRooms = [
+            { name: "Ruang Produksi Podcast", price: "Gratis" },
+            { name: "Ruang Produksi Video", price: "Gratis" },
+            { name: "Auditorium", price: "Rp 500.000" }
+        ];
+
+        const dummyTrainings = [
+            { name: "Pelatihan Kewirausahaan", target: "masyarakat umum", schedule: "setiap hari Sabtu, 08:00 WIB" },
+            { name: "Pelatihan Literasi Digital & Informasi", target: "siswa dan mahasiswa", schedule: "setiap Selasa, 16:00 WIB" },
+            { name: "Pelatihan Penggunaan Software", target: "siswa dan mahasiswa", schedule: "setiap Rabu, 16:00 WIB" },
+            { name: "Pelatihan Desain Pembelajaran", target: "guru dan dosen", schedule: "setiap Minggu, 08:00 WIB" }
+        ];
+
+        let loggedInUser = null; // Menyimpan data user yang sedang login
+
+        // --- Fungsi untuk Modal Login ---
+        function openLoginModal() {
+            document.getElementById("loginModal").classList.remove("hidden");
+            document.body.style.overflow = "hidden"; // Mencegah scroll body saat modal aktif
+        }
+        
+        function closeLoginModal() {
+            document.getElementById("loginModal").classList.add("hidden");
+            document.body.style.overflow = "auto"; // Mengaktifkan kembali scroll body
+            document.getElementById('errorMessage').classList.add('hidden'); // Sembunyikan pesan error saat modal ditutup
+            document.getElementById('loginForm').reset(); // Reset form login
+        }
+        
+        // Update UI setelah login/logout
+        function updateAuthUI() {
+            const loginButton = document.getElementById('loginButton');
+            const welcomeButton = document.getElementById('welcomeButton');
+            const welcomeMessageSpan = document.getElementById('welcomeMessage');
+            const logoutButton = document.getElementById('logoutButton');
+
+            if (loggedInUser) {
+                loginButton.classList.add('hidden');
+                welcomeButton.classList.remove('hidden');
+                logoutButton.classList.remove('hidden');
+                welcomeMessageSpan.textContent = loggedInUser.username; // Isi nama user di dalam span
+            } else {
+                loginButton.classList.remove('hidden');
+                welcomeButton.classList.add('hidden');
+                logoutButton.classList.add('hidden');
+                welcomeMessageSpan.textContent = '';
+            }
+        }
+
+        // Fungsi logout
+        function logout() {
+            loggedInUser = null;
+            updateAuthUI();
+            closeServiceModal(); // Pastikan modal layanan tertutup setelah logout
+        }
+
+        // Handle form submission untuk login
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputIdentifier = document.getElementById('memberIdOrUsername').value.trim();
+            const password = document.getElementById('password').value;
+            let foundAccount = null;
+
+            for (let i = 0; i < dummyAccounts.length; i++) {
+                const account = dummyAccounts[i];
+                if ((account.memberId === inputIdentifier || account.username.toLowerCase() === inputIdentifier.toLowerCase()) && account.password === password) {
+                    foundAccount = account;
+                    break;
+                }
+            }
+
+            if (foundAccount) {
+                loggedInUser = foundAccount; // Simpan data user yang login
+                closeLoginModal(); // Tutup modal login
+                updateAuthUI(); // Update tampilan navbar
+            } else {
+                document.getElementById('errorMessage').classList.remove('hidden');
+            }
+        });
+
+        // --- Fungsi untuk Modal Layanan ---
+        // Fungsi baru untuk menangani klik layanan
+        function handleServiceClick(serviceType) {
+            if (!loggedInUser) {
+                openNotLoggedInModal(); // Tampilkan modal notifikasi jika belum login
+            } else {
+                openServiceModal(serviceType); // Buka modal layanan jika sudah login
+            }
+        }
+
+        function openServiceModal(serviceType) {
+            const modalTitle = document.getElementById('serviceModalTitle');
+            const modalContent = document.getElementById('serviceModalContent');
+            const serviceModalForm = document.getElementById('serviceModalForm');
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            const additionalFields = document.getElementById('additionalServiceFormFields');
+
+            // Reset modal state
+            modalContent.innerHTML = '';
+            additionalFields.innerHTML = '';
+            serviceModalForm.classList.remove('hidden'); // Tampilkan form secara default
+            confirmationMessage.classList.add('hidden'); // Sembunyikan pesan konfirmasi
+
+            // Pre-fill user info if logged in
+            if (loggedInUser) {
+                document.getElementById('formName').value = loggedInUser.username;
+                document.getElementById('formMemberId').value = loggedInUser.memberId;
+            } else {
+                // Should not happen if handleServiceClick is used correctly
+                document.getElementById('formName').value = '';
+                document.getElementById('formMemberId').value = '';
+            }
+
+            if (serviceType === 'pinjamRuangan') {
+                modalTitle.textContent = 'Peminjaman Ruangan';
+                let contentHtml = '<p class="mb-4">Berikut daftar ruangan yang tersedia untuk dipinjam:</p><ul class="list-disc pl-5 space-y-2">';
+                dummyRooms.forEach(room => {
+                    contentHtml += `<li class="text-lg font-medium">${room.name} <span class="text-blue-600">(${room.price})</span></li>`;
+                });
+                contentHtml += '</ul><p class="mt-6 text-gray-600 text-sm">Untuk mengajukan peminjaman, silakan isi form di bawah.</p>';
+                modalContent.innerHTML = contentHtml;
+
+                additionalFields.innerHTML = `
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Pilih Ruangan</label>
+                        <select id="selectedRoom" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required>
+                            <option value="">-- Pilih Ruangan --</option>
+                            ${dummyRooms.map(room => `<option value="${room.name}">${room.name} (${room.price})</option>`).join('')}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Tanggal & Waktu Peminjaman</label>
+                        <input type="datetime-local" id="roomDateTime" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required />
+                    </div>
+                `;
+
+            } else if (serviceType === 'pinjamBuku') {
+                modalTitle.textContent = 'Peminjaman Buku';
+                let contentHtml = '<p class="mb-4">Berikut daftar buku yang tersedia di perpustakaan kami:</p><ul class="list-disc pl-5 space-y-2">';
+                dummyBooks.forEach(book => {
+                    contentHtml += `<li class="text-lg font-medium">${book}</li>`;
+                });
+                contentHtml += '</ul><p class="mt-6 text-gray-600 text-sm">Untuk mengajukan peminjaman, silakan isi form di bawah.</p>';
+                modalContent.innerHTML = contentHtml;
+
+                additionalFields.innerHTML = `
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Pilih Buku</label>
+                        <select id="selectedBook" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required>
+                            <option value="">-- Pilih Buku --</option>
+                            ${dummyBooks.map(book => `<option value="${book}">${book}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Tanggal Pengembalian (Maks 7 hari)</label>
+                        <input type="date" id="bookReturnDate" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required />
+                    </div>
+                `;
+
+            } else if (serviceType === 'daftarPelatihan') {
+                modalTitle.textContent = 'Daftar Pelatihan';
+                let contentHtml = '<p class="mb-4">Berikut daftar pelatihan yang bisa Anda ikuti:</p>';
+                dummyTrainings.forEach(training => {
+                    contentHtml += `
+                        <div class="border border-blue-200 p-4 rounded-lg mb-4 bg-blue-50">
+                            <h3 class="text-xl font-bold text-blue-800">${training.name}</h3>
+                            <p class="text-gray-700 mt-1"><i class="fas fa-users mr-2 text-blue-600"></i>Target Peserta: ${training.target}</p>
+                            <p class="text-gray-700"><i class="fas fa-calendar-alt mr-2 text-blue-600"></i>Jadwal: ${training.schedule}</p>
+                        </div>
+                    `;
+                });
+                contentHtml += '<p class="mt-6 text-gray-600 text-sm">Untuk mendaftar, silakan isi form di bawah.</p>';
+                modalContent.innerHTML = contentHtml;
+
+                additionalFields.innerHTML = `
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Pilih Pelatihan</label>
+                        <select id="selectedTraining" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm" required>
+                            <option value="">-- Pilih Pelatihan --</option>
+                            ${dummyTrainings.map(training => `<option value="${training.name}">${training.name} (${training.schedule})</option>`).join('')}
+                        </select>
+                    </div>
+                `;
+            }
+
+            document.getElementById("serviceModal").classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+            document.getElementById('serviceSubmissionForm').dataset.serviceType = serviceType;
+        }
+
+        function closeServiceModal() {
+            document.getElementById("serviceModal").classList.add("hidden");
+            document.body.style.overflow = "auto";
+            document.getElementById('serviceSubmissionForm').reset(); // Reset form layanan
+            document.getElementById('confirmationMessage').classList.add('hidden'); // Sembunyikan pesan konfirmasi
+            document.getElementById('serviceModalForm').classList.remove('hidden'); // Pastikan form terlihat jika dibuka lagi
+        }
+
+        // Tutup modal layanan saat klik di luar area modal
+        document.getElementById('serviceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeServiceModal();
+            }
+        });
+
+        // Handle form submission untuk layanan (simulasi lebih "real")
+        document.getElementById('serviceSubmissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const serviceType = this.dataset.serviceType;
+            const name = document.getElementById('formName').value;
+            const memberId = document.getElementById('formMemberId').value;
+            let confirmationDetail = '';
+
+            if (serviceType === 'pinjamRuangan') {
+                const selectedRoom = document.getElementById('selectedRoom').value;
+                const roomDateTime = document.getElementById('roomDateTime').value;
+                confirmationDetail = `Permohonan peminjaman **${selectedRoom}** oleh **${name} (No. Anggota: ${memberId})** pada tanggal **${new Date(roomDateTime).toLocaleString('id-ID')}** berhasil diajukan.`;
+            } else if (serviceType === 'pinjamBuku') {
+                const selectedBook = document.getElementById('selectedBook').value;
+                const bookReturnDate = document.getElementById('bookReturnDate').value;
+                confirmationDetail = `Permohonan peminjaman buku **"${selectedBook}"** oleh **${name} (No. Anggota: ${memberId})** berhasil diajukan. Mohon kembalikan sebelum tanggal **${new Date(bookReturnDate).toLocaleDateString('id-ID')}**.`;
+            } else if (serviceType === 'daftarPelatihan') {
+                const selectedTraining = document.getElementById('selectedTraining').value;
+                confirmationDetail = `Pendaftaran pelatihan **${selectedTraining}** oleh **${name} (No. Anggota: ${memberId})** berhasil. Detail lebih lanjut akan dikirim ke email Anda.`;
+            }
+
+            // Sembunyikan form dan tampilkan pesan konfirmasi
+            document.getElementById('serviceModalForm').classList.add('hidden');
+            document.getElementById('confirmationDetail').innerHTML = confirmationDetail;
+            document.getElementById('confirmationMessage').classList.remove('hidden');
+        });
+        
+        // --- Notifikasi Belum Login ---
+        function openNotLoggedInModal() {
+            document.getElementById("notLoggedInModal").classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeNotLoggedInModal() {
+            document.getElementById("notLoggedInModal").classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
+
+        function goToLoginFromNotification() {
+            closeNotLoggedInModal();
+            openLoginModal();
+        }
+
+        // Fungsi untuk scroll ke bagian tentang
+        function goToAbout() {
+            document.getElementById('tentang').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Inisialisasi UI saat halaman pertama kali dimuat
+        document.addEventListener('DOMContentLoaded', updateAuthUI);
+    </script>
+</body>
+</html>
